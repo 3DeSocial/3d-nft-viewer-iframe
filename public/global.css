@@ -4,3 +4,17 @@ html, body {
 	margin: 0;
 	padding: 0
 }
+ul li {
+  display: block;
+  width: 30em;
+  margin: 0 auto;
+    margin-bottom: 0px;
+  background-color: #ffffff;
+  padding: 1em;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  border: solid #666 1px;
+}
+ul li img {
+	max-width: 100%;
+}
