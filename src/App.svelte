@@ -5,7 +5,8 @@
 	let el;
 
 	onMount(() => {
-		createScene(el)
+	console.log('creating scene');
+		createScene(el);
 	});
 </script>
 

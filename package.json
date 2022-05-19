@@ -17,7 +17,9 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "3d-nft-viewer": "^1.5.3",
+    "deso-protocol": "^0.3.1",
     "sirv-cli": "^1.0.0",
-    "three": "^0.123.0"
+    "three": "^0.140.2"
   }
 }
