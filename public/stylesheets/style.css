@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+#nft-ctr, .nft-ctr, {
+  height: 100%;
+  width: 100%;
+}
+.nft-preview,
+.container  {
+  width: 100%;
+}

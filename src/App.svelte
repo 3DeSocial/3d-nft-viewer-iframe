@@ -2,32 +2,45 @@
 	import { onMount } from 'svelte';
 	import { createScene } from "./scene";
 
+	import Deso from 'deso-protocol';
+	const deso = new Deso();
+
 	let el;
+	let src = '';
+	let nftPostHashHex = '';
+	let previewMediaUrl = '';
+	const urlParams = new URLSearchParams(window.location.search);
+  	nftPostHashHex = urlParams.get('nftPostHashHex');
+	const request = {
+		"PostHashHex": nftPostHashHex
+	};
 
-	onMount(() => {
-	console.log('creating scene');
-		createScene(el);
+	deso.posts.getSinglePost(request).then((response)=>{
+		if(response.PostFound.ImageURLs[0]){
+			previewMediaUrl = response.PostFound.ImageURLs[0];
+		}
 	});
+
+	onMount((el) => {
+
+		console.log('nftPostHashHex: ',nftPostHashHex);
+		createScene(el, nftPostHashHex );
+	});
+
 </script>
-
-
-<ul class='nft-feed'>
-<li class="nft-post" data-nft="e942aa869c0181a3dab09248d5604c9b3ff9f234058ccee6816acf260f52e08e">
-		<p>Test lambo mint</p>
-		<div class="container" id="nft-container">
-		<img id="nft-preview-img" class="nft-preview" src="https://images.deso.org/9a6f0f219fbb948e64f367dadf7aed173f88c2a3ff1c4715fb1318e139dc4ffe.webp"/>
-		</div>
-		<p class="nft-viewer" data-nft="e942aa869c0181a3dab09248d5604c9b3ff9f234058ccee6816acf260f52e08e">Loading...</p>
-		<form id="nft-overlay" class="nft-3d-overlay">
-		    <dl>
-		      <dt>Show Scenery</dt>
-		      <dd><input type="checkbox" id="floor" name="floor" value="Show Floor" checked="checked"/></dd>
-		      <dt>Show Sky</dt>
-		      <dd><input type="checkbox" id="sky" name="sky" value="Show Sky" checked="checked"/></dd>
-		    </dl>
-  		</form>  
-</li>
-</ul>	
+<div bind:this={el} id="nft-ctr" class="nft-ctr" data-nft="{nftPostHashHex}">
+	<div class="container" id="nft-img">
+		<img id="nft-preview-img" class="nft-preview" src="{previewMediaUrl}"/>
+	</div>
+	<form id="nft-overlay" class="nft-3d-overlay" style="display:none;">
+	    <dl>
+	      <dt>Show Scenery</dt>
+	      <dd><input type="checkbox" id="floor" name="floor" value="Show Floor" checked="checked"/></dd>
+	      <dt>Show Sky</dt>
+	      <dd><input type="checkbox" id="sky" name="sky" value="Show Sky" checked="checked"/></dd>
+	    </dl>
+	</form>  
+</div>	
 
   
 

@@ -1,12 +1,12 @@
 html, body {
 	width: 100%;
-	height: 100%;
 	margin: 0;
 	padding: 0
 }
 ul li {
   display: block;
-  width: 30em;
+  width: 100%;
+  max-width: 60em;
   margin: 0 auto;
   margin-bottom: 0px;
   background-color: #ffffff;
@@ -36,4 +36,11 @@ form.nft-3d-overlay {
 .nft-3d-overlay dl dt {
   display: inline-block;
   margin-left: 0.5em;
+}
+#nft-ctr, .nft-ctr{
+max-width: 100%;
+}
+.nft-preview,
+.container  {
+max-width: 100%;
 }
