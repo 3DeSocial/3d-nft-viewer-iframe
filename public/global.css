@@ -3,44 +3,62 @@ html, body {
 	margin: 0;
 	padding: 0
 }
-ul li {
-  display: block;
-  width: 100%;
-  max-width: 60em;
-  margin: 0 auto;
-  margin-bottom: 0px;
-  background-color: #ffffff;
-  padding: 1em;
-  border-radius: 10px;
-  margin-bottom: 1em;
-  border: solid #666 1px;
-}
-ul li img {
-	max-width: 100%;
-}
-.d3d-btn {
-  padding: 0.5em;
-  border: solid #333 1px;
-  background-color: #eee;
-  margin: 0.5em;
-  text-decoration: none;
-}
-form.nft-3d-overlay {
-  display: inline-block;
-  width: 100%;
-}
-.nft-3d-overlay dl {
-  margin: 0.5em 0em 0.25em 0.5em;
-}
-.nft-3d-overlay dl dd,
-.nft-3d-overlay dl dt {
-  display: inline-block;
-  margin-left: 0.5em;
-}
+
 #nft-ctr, .nft-ctr{
-max-width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
 }
 .nft-preview,
 .container  {
 max-width: 100%;
+margin: 0 auto;
+}
+#nft-overlay-holder.svelte-n8t4is.svelte-n8t4is {
+ position:absolute;
+ top:0px;
+ left:0px;
+ width:100%;
+ display:flex;
+ justify-content:center
+}
+#nft-overlay.svelte-n8t4is.svelte-n8t4is {
+ background-color:#0003;
+ color:#fff;
+ padding-left:5px;
+ padding-right:5px;
+ display:flex;
+ align-items:center;
+ max-width: 270px;
+ margin: 0 auto;
+}
+#nft-overlay.svelte-n8t4is #animation-select.svelte-n8t4is {
+ width:65px;
+ margin-left:5px
+}
+#nft-overlay.svelte-n8t4is select.svelte-n8t4is {
+ margin:0 10px;
+ font-size:.8em;
+ padding:.2em
+}
+#nft-overlay.svelte-n8t4is input.svelte-n8t4is {
+ margin:0
+}
+#nft-overlay.svelte-n8t4is label.svelte-n8t4is {
+ cursor:pointer;
+ font-size:.8em;
+ padding-top: 0.5em;
+ text-align:center
+}
+button#VRButton{
+  display: inline-block;
+  opacity: 0.5;
+  padding: 0.25em 0.5em;
+  font-size: 17px;
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  margin: 0 auto;
 }

@@ -18,8 +18,9 @@
   },
   "dependencies": {
     "3d-nft-viewer": "^1.5.3",
-    "deso-protocol": "^0.3.1",
+    "deso-protocol": "^0.3.2",
     "sirv-cli": "^1.0.0",
-    "three": "^0.140.2"
+    "three": "^0.140.2",
+    "three-mesh-bvh": "^0.5.11"
   }
 }
