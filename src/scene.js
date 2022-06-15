@@ -24,13 +24,14 @@ export const createScene = (el, nftPostHashHex) => {
     scaleModelToDepth: 5
   });
 
-let params = {
-    modelUrl: 'http://localhost:3000/models/'+nftPostHashHex+'/gltf/standard/scene.gltf',
+  /*** Load the model immediately, or call the following code on click of a button ***/
+  let params = {
+    nftPostHash:nftPostHashHex,
     containerId: 'nft-ctr',
     hideElOnLoad: 'nft-img'
   }
-console.log(params);
-  nftViewer.loadModel(params)
+
+  nftViewer.loadNFT(params)
   .then((item, model, pos)=>{
       if(nftViewer.loadedItem){ 
         // this confirms that the model is loaded
