@@ -5,40 +5,6 @@ import { MeshBVH, acceleratedRaycast, MeshBVHVisualizer } from '3d-nft-viewer'
 import Deso from 'deso-protocol';
 const deso = new Deso();
 
-
-
-const getModelUrl = async (nftPostHashHex) =>{
-    if(!nftPostHashHex){
-      console.log('getModelUrl: no PostHashHex passed');
-      return false;
-    };
-
-
-    const req = await fetch ('https://backend.nftz.zone/api/post/getnft?hash='+nftPostHashHex );
-    let nft = await req.json();
-console.log(nft);
-
-
-    fetch('https://backend.nftz.zone/api/post/get3DScene?postHex='+ nftPostHashHex +'&path='+nft.format3D +'&format=gltf')
-    .then((res)=>{
-        console.log(res);
-    });
-
-//    let path = getThreeDPath(nft.format3D)
-
- /*   let extraDataParser = new ExtraData3DParser({ nftPostHashHex: nftPostHashHex,
-                                                  extraData3D:nft.path3D,
-                                                  endPoint:'https://desodata.azureedge.net/unzipped/'});
-    if(extraDataParser.models.length === 0){
-      return false;
-    };
-    let modelUrl = extraDataParser.getModelPath(0,'glb','any');*/
-    console.log('modelUrl: ',modelUrl)
-    return modelUrl;
-
-};
-
-
 const nftIsValid3D = (response) => {
 
   if(!response.PostFound){
@@ -80,7 +46,7 @@ export const createScene = (el, nftPostHashHex) => {
     ctrClass: 'nft-ctr', // Attribute of div containing post and any additionl html
     nftDataAttr: 'data-nft', // Attribute of div.ctrClass containing post has hex
     nftsRoute: 'https://backend.nftz.zone/api/post/get3DScene',
-    modelsRoute: 'https://desodata.azureedge.net/unzipped/', // Back end route to load models
+    modelsRoute: 'https://desodata.azureedge.net', // Back end route to load models
     linkText: 'View in 3D',
     linkCtrCls: 'nft-viewer', // container for links such as view in 3d, view in vr
     previewCtrCls: 'container', //container element in which to create the preview
@@ -137,7 +103,7 @@ console.log('loadModel: ',params);
             console.log('retrieve path from zip');
             let nftRequestParams = {
               postHex: nftPostHashHex,
-              path: path3D,
+              path: '/'+path3D,
               format: 'gltf'
             };
 console.log('loadModel: ',nftRequestParams);
@@ -193,12 +159,12 @@ console.log('loadModel: ',nftRequestParams);
               console.log('path in ex data')
               result+= '/unzipped/' +post.postHashHex + '/'+ post.path3D;
             }else{
-              const reqgltf = await fetch('https://backend.nftz.zone/api/post/get3DScene?postHex='+ post.postHashHex +'&path='+post.fullPath3D +'&format=gltf')
+              const reqgltf = await fetch('https://backend.nftz.zone/api/post/get3DScene?postHex='+ post.postHashHex +'&path=/'+post.fullPath3D +'&format=gltf')
               result += await reqgltf.text();
             }
             break;
           default:
-            const req = await fetch(getApi() + 'https://backend.nftz.zone/api/post/get3DScene?postHex='+ post.postHashHex +'&path='+post.fullPath3D +'&format='+ format)
+            const req = await fetch(getApi() + 'https://backend.nftz.zone/api/post/get3DScene?postHex='+ post.postHashHex +'&path=/'+post.fullPath3D +'&format='+ format)
             result += await req.text();
           break;
         }
